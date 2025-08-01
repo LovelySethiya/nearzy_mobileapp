@@ -1,0 +1,47 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace = "com.nearzy.app"
+    compileSdk = 36
+    ndkVersion = flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    defaultConfig {
+        applicationId = "com.nearzy.app"
+        minSdk = 23
+        targetSdk = 36
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            shrinkResources false
+            signingConfig = signingConfigs.debug
+        }
+    }
+}
+
+flutter {
+    source '../..'
+}
+
+dependencies {
+    classpath 'com.android.tools.build:gradle:8.3.0'
+    implementation "androidx.multidex:multidex:2.0.1"
+}
